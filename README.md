@@ -53,6 +53,7 @@ Methods:
 ### Installation
 
 - Set your `API_KEY` in `.env` file in `app` directory
+- To generate API_KEY for Youtube. Please refer `Before you start` section of this [link](https://developers.google.com/youtube/v3/getting-started)
 - Follow below steps
 ```shell
 docker-compose up --build
