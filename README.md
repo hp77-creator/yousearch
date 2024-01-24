@@ -48,6 +48,34 @@ Methods:
     DB, Backend service and Background worker all are in same container
 
 
+### Installation
+
+```shell
+docker-compose up --build
+```
+
+By default, backend server will start on `3000` port. so visiting 
+http://localhost:8000/get-latest-videos will give you the latest videos
+
+If for any reason you face a db connection error/migration error.
+
+follow the below steps
+
+```shell
+docker container ls
+```
+Using above command get the container id,
+
+```shell
+docker exec -it <container-id> /bin/bash
+cd app
+alembic revision --autogenerate -m "create_videometadata_table"
+alembic upgrade head
+```
+
+Above commands will create the new table, if it was already not created
+
+
 ### References
 
 
