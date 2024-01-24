@@ -12,3 +12,13 @@ SQLALCHEMY_DB_URL = os.environ.get("DB_URL", "postgresql+psycopg2://postgres:pos
 
 engine = create_engine(SQLALCHEMY_DB_URL)
 SessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
+
+Base = declarative_base()
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

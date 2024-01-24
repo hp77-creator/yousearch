@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from api import router
 
 app = FastAPI()
 
@@ -13,3 +14,4 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+app.include_router(router)
