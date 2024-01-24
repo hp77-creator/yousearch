@@ -9,6 +9,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=test_db
+      - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
   redis:
     container_name: "redis"
     image: redis:alpine
@@ -24,6 +26,9 @@ services:
     ports:
       - "8000:8000"
       - "5555:5555"
+    environment:
+      - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
     depends_on:
       - db
       - redis
@@ -31,6 +36,9 @@ services:
     restart: unless-stopped
     build: ./app
     container_name: "celery"
+    environment:
+      - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
     volumes:
       - .:/code
     command: bash -c "cd app && celery -A task worker -B -l info"
@@ -44,6 +52,8 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
       - PGADMIN_DEFAULT_PASSWORD=admin
+      - DB_URL=postgresql+psycopg2://postgres:postgres@db:5432/postgres
+      - REDIS_URL=redis://redis:6379/0
     ports:
       - "5050:80"
     depends_on:

@@ -18,7 +18,5 @@ EXPOSE 8000 5555
 # Command to run both Flask and Celery
 #CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "main:app", "--preload", "&&", "celery", "-A", "task", "worker", "--loglevel=info"]
 
-RUN chmod +x server-entrypoint.sh
-RUN chmod +x worker-entrypoint.sh
-RUN chmod +x beat-entrypoint.sh
-RUN chmod +x flower-entrypoint.sh
+RUN chmod +x ./docker_helpers/server-entrypoint.sh
+RUN chmod +x ./docker_helpers/worker-entrypoint.sh

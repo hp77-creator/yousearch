@@ -39,7 +39,7 @@ def fetch_and_store_yt_data():
     logger.info("Fetching and storing YouTube data...")
     db = SessionLocal()
     try:
-        queries = ["NBA", "Football", "Cricket", "AI", "Programming", "news", "music", "movies"]
+        queries = ["NBA", "Football", "Cricket", "AI", "Programming", "news", "music", "movies", "vim"]
         random.seed(datetime.datetime.now().timestamp())
         search_query = queries[random.randint(0, len(queries)-1)]
         options = {

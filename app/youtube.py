@@ -5,12 +5,12 @@ from googleapiclient import errors, discovery
 from dotenv import load_dotenv
 from googleapiclient.errors import HttpError
 
-from constants import YOUTUBE_WATCH_BASE_URL, YOUTUBE_CHANNEL_BASE_URL, PREDEFINED_QUERY
+from constants import YOUTUBE_WATCH_BASE_URL, YOUTUBE_CHANNEL_BASE_URL, PREDEFINED_QUERY, SERVICE_NAME, VERSION
 
 load_dotenv()
 
-api_service_name = os.environ.get("SERVICE_NAME")
-api_version = os.environ.get("VERSION")
+api_service_name = SERVICE_NAME
+api_version = VERSION
 developer_key = os.environ.get("API_KEY")
 
 logger = logging.getLogger()
