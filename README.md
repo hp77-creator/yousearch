@@ -14,7 +14,8 @@ __Goal__ : To create an API to fetch latest videos descending order of the time 
 - [x] Dockerize the project
 - [x] Should be scalable and optimised
 
-## [!Warning] Bonus points
+> [!Tip] 
+> ## Bonus points
 
 - [] Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available keys ( :thinking: maybe searching a list of keys in env, if at anytime there is a particular response received from YT server, update the API_KEY env variable)
 - [] Make a dashboard to see the stored videos with filter
@@ -33,7 +34,7 @@ predefined_query = `NBA`, `Basketball`, `Vim`
 
 - Backend:
     - fastAPI for APIs
-    - sqlite for DB
+    - postgreSQL for DB
         - Not good for concurrent operations like read & write together
         - Going with __PostgreSQL__ instead [MVCC](https://www.postgresql.org/docs/7.1/mvcc.html)
     - celery for task queue to fetch record and enter in the DB
@@ -94,7 +95,8 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-[!WARNING] Scalability
+> [!Note]
+> ### Scalability
 
 Project is scalable because it is using `celery` to do the background task of syncing the DB
 It is also dockerized so if the load increases on one container, more can be spin-up with any orchestration tool
@@ -103,10 +105,15 @@ PostgreSQL on the other hand provides MVCC(multi-versin concurrency control)[lin
 
 ### Takeaways
 
-[!WARNING] Learnt the importance of `-B` flag for `celery -A <task-name> worker`
+> [!Tip]
+> Learnt the importance of `-B` flag for `celery -A <task-name> worker`
 It is very important to enable celery beat which can run periodically.
 Reference: [Yt Video](https://youtu.be/BR8RXQRpl7U?si=s37xqrDXMu0i4tx3)
 
+> [!Tip]
+> ### Architecture
+> This looks linear in diagram but process are async
+> ![img.png](img.png)
 
 ### References
 
