@@ -15,7 +15,7 @@ services:
     ports:
       - "6379:6379"
   web:
-    restart: always
+    restart: unless-stopped
     build: ./app
     command:
       bash -c "sleep 10 && cd app && alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
@@ -23,9 +23,21 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+      - "5555:5555"
     depends_on:
       - db
       - redis
+  celery:
+    restart: unless-stopped
+    build: ./app
+    container_name: "celery"
+    volumes:
+      - .:/code
+    command: bash -c "cd app && celery -A task worker -B -l info"
+    links:
+      - redis
+      - web
+
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4

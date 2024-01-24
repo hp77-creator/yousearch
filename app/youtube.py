@@ -5,7 +5,7 @@ from googleapiclient import errors, discovery
 from dotenv import load_dotenv
 from googleapiclient.errors import HttpError
 
-from .constants import YOUTUBE_WATCH_BASE_URL, YOUTUBE_CHANNEL_BASE_URL, PREDEFINED_QUERY
+from constants import YOUTUBE_WATCH_BASE_URL, YOUTUBE_CHANNEL_BASE_URL, PREDEFINED_QUERY
 
 load_dotenv()
 
@@ -30,7 +30,7 @@ def parse_response(response, videos):
         temp["video_url"] = "".join([YOUTUBE_WATCH_BASE_URL, search_result['id']['videoId']])
         temp["channel_url"] = "".join([YOUTUBE_CHANNEL_BASE_URL, search_result['snippet']['channelId']])
         temp["channel_title"] = search_result['snippet']['channelTitle']
-        videos[search_result['id']['videoId']] = temp
+        videos.append(temp)
 
 
 def fetch_yt_video(query_options):
@@ -45,6 +45,7 @@ def fetch_yt_video(query_options):
         request = youtube.search().list(
             part="id,snippet",
             q=query_options.get('query'),
+            relevanceLanguage="en",
             maxResults=query_options.get('max_result'),
             order='date',
             type=query_options.get('video')
@@ -59,7 +60,7 @@ def fetch_yt_video(query_options):
         logger.error("Error while doing request " + str(e))
         exit(1)
 
-    videos = dict()
+    videos =[]
     parse_response(response, videos)
     print(videos)
     return videos

@@ -8,7 +8,7 @@ class VideoMetaData(Base):
     __tablename__ = "videometadata"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
+    title = Column(String)
     description = Column(String)
     published_date = Column(DateTime)
     thumbnail_url = Column(String)

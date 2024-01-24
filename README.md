@@ -5,11 +5,11 @@ __Goal__ : To create an API to fetch latest videos descending order of the time 
 
 ## Requirements
 
-- [] Server should call youtube API continuously in background after certain interval for a predefined search query
+- [x] Server should call youtube API continuously in background after certain interval for a predefined search query
 
-- [] Store the response in DB with following fields - Video Title, Description, Publishing datetime, thumbnails URL, Channel name(Optional)
+- [x] Store the response in DB with following fields - Video Title, Description, Publishing datetime, thumbnails URL, Channel name(Optional)
 
-- [] GET API to fetch data from DB in descending order
+- [x] GET API to fetch data from DB in descending order
 - [] Search API to search the stored videos using their __title__ and their __description__
 - [] Dockerize the project
 - [] Should be scalable and optimised
@@ -74,6 +74,11 @@ alembic upgrade head
 ```
 
 Above commands will create the new table, if it was already not created
+
+
+[!WARNING] Learnt the importance of `-B` flag for `celery -A <task-name> worker`
+It is very important to enable celery beat which can run periodically.
+Reference: [Yt Video](https://youtu.be/BR8RXQRpl7U?si=s37xqrDXMu0i4tx3)
 
 
 ### References
