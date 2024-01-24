@@ -57,12 +57,11 @@ def fetch_yt_video(query_options):
     try:
         response = request.execute()
     except HttpError as e:
-        logger.error("Error while doing request " + str(e))
+        logger.error("Error while sending request " + str(e))
         exit(1)
 
-    videos =[]
+    videos = []
     parse_response(response, videos)
-    print(videos)
     return videos
 
 

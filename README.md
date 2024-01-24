@@ -103,6 +103,12 @@ It is also dockerized so if the load increases on one container, more can be spi
 DB used is `PostgreSQL` because of its non-blocking I/O features unlike `SQLite` which only supports file based transactions.
 PostgreSQL on the other hand provides MVCC(multi-versin concurrency control)[link](https://www.postgresql.org/docs/7.1/mvcc.html)
 
+### Coding style
+
+Tried to adhere to PEP-8 guidelines enforced by `Pycharm`.
+
+
+
 ### Takeaways
 
 > [!Tip]
